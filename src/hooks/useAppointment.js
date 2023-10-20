@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-console.log('hellor');
+console.log('hello');
 
 export const useAppointment = () => {
   let initValue = JSON.parse(localStorage.getItem('appointments'));
