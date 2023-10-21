@@ -1,122 +1,114 @@
-import { useState } from "react"
-import { v4 as uuid } from 'uuid';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 
 const Form = ({ createAppointment }) => {
-
   const initialValue = {
     pet: '',
     owner: '',
     date: '',
     time: '',
     symptoms: '',
-  }
+  };
 
-  const [appointment, updateAppointment] = useState(initialValue)
+  const [appointment, updateAppointment] = useState(initialValue);
 
-  const [error, updateError] = useState(false)
+  const [error, updateError] = useState(false);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     updateAppointment({
       ...appointment,
-      [e.target.name] : e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const { pet, owner, date, time, symptoms } = appointment
+  const { pet, owner, date, time, symptoms } = appointment;
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Condicion
-    if( pet.trim() === '' || owner.trim() === '' || date.trim() === '' || time.trim() === '' || symptoms.trim() === '' ) {
-      updateError(true)
+    if (
+      pet.trim() === '' ||
+      owner.trim() === '' ||
+      date.trim() === '' ||
+      time.trim() === '' ||
+      symptoms.trim() === ''
+    ) {
+      updateError(true);
       return;
     }
 
-    updateError(false)
+    updateError(false);
 
-    // Asignar un id unico
-    appointment.id = uuid()
+    appointment.id = uuid();
+    createAppointment(appointment);
 
-    // Crear cita
-    createAppointment(appointment)
-
-    updateAppointment(initialValue)
-
-  }
+    updateAppointment(initialValue);
+  };
 
   return (
     <>
       <h1>Crear Cita</h1>
 
-      {
-        error ? 
-        <p className="alerta-error">Todos los campos son obligatorios</p> 
-        : null
-      }
+      {error ? <p className='alerta-error'>Todos los campos son obligatorios</p> : null}
 
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={handleSubmit}>
         <label>Nombre de la Mascota</label>
-        <input 
-          type="text" 
-          name="pet" 
-          className="u-full-width" 
-          placeholder="Nombre de tu amigo peludo"
-          onChange={ handleChange }
-          value={ pet }
+        <input
+          type='text'
+          name='pet'
+          className='u-full-width'
+          placeholder='Nombre de tu amigo peludo'
+          onChange={handleChange}
+          value={pet}
         />
-        
+
         <label>Nombre del Propietario</label>
-        <input 
-          type="text" 
-          name="owner" 
-          className="u-full-width" 
-          placeholder="Nombre del tutor legal :)"
-          onChange={ handleChange }
-          value={ owner }
+        <input
+          type='text'
+          name='owner'
+          className='u-full-width'
+          placeholder='Nombre del tutor legal :)'
+          onChange={handleChange}
+          value={owner}
         />
-        
+
         <label>Fecha</label>
-        <input 
-          type="date" 
-          name="date" 
-          className="u-full-width" 
-          onChange={ handleChange }
-          value={ date }
+        <input
+          type='date'
+          name='date'
+          className='u-full-width'
+          onChange={handleChange}
+          value={date}
         />
-        
+
         <label>Hora</label>
-        <input 
-          type="time" 
-          name="time" 
-          className="u-full-width" 
-          onChange={ handleChange }
-          value={ time }
+        <input
+          type='time'
+          name='time'
+          className='u-full-width'
+          onChange={handleChange}
+          value={time}
         />
-        
+
         <label>Síntomas</label>
-        <textarea 
-          name="symptoms" 
-          className="u-full-width" 
-          onChange={ handleChange }
-          value={ symptoms }
+        <textarea
+          name='symptoms'
+          className='u-full-width'
+          onChange={handleChange}
+          value={symptoms}
         ></textarea>
-        
-        <button
-          className="u-full-width button-primary" 
-          type="submit"
-        >
+
+        <button className='u-full-width button-primary' type='submit'>
           Agregar Cita
         </button>
-        
       </form>
     </>
-  )
-}
+  );
+};
 
 Form.propTypes = {
-  createAppointment: PropTypes.func.isRequired
-}
+  createAppointment: PropTypes.func.isRequired,
+};
 
-export default Form
+export default Form;

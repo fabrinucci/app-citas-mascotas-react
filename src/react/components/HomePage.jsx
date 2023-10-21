@@ -4,8 +4,7 @@ import { Appointment } from './Appointment';
 import Form from './Form';
 
 export const HomePage = () => {
-  const { appointments, saveAppointments, createAppointment } =
-    useAppointment();
+  const { appointments, saveAppointments, createAppointment } = useAppointment();
 
   useEffect(() => {
     let initValue = JSON.parse(localStorage.getItem('appointments'));
@@ -18,16 +17,11 @@ export const HomePage = () => {
   }, [appointments]);
 
   const handleDelete = (id) => {
-    const newAppointment = appointments.filter(
-      (appointment) => appointment.id !== id
-    );
+    const newAppointment = appointments.filter((appointment) => appointment.id !== id);
     saveAppointments(newAppointment);
   };
 
-  const title =
-    appointments.length === 0
-      ? 'No hay Citas agregadas'
-      : 'Admininstra tus citas';
+  const title = appointments.length === 0 ? 'No hay Citas agregadas' : 'Admininstra tus citas';
 
   return (
     <>

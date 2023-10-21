@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-console.log('hello');
-
 export const useAppointment = () => {
   let initValue = JSON.parse(localStorage.getItem('appointments'));
   if (!initValue) {
