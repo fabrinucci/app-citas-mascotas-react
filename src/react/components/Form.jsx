@@ -58,7 +58,7 @@ const Form = ({ createAppointment }) => {
           type='text'
           name='pet'
           className='u-full-width'
-          placeholder='Nombre de tu amigo peludo'
+          placeholder='Nombre de la mascota'
           onChange={handleChange}
           value={pet}
         />
@@ -68,7 +68,7 @@ const Form = ({ createAppointment }) => {
           type='text'
           name='owner'
           className='u-full-width'
-          placeholder='Nombre del tutor legal :)'
+          placeholder='Nombre del propietario'
           onChange={handleChange}
           value={owner}
         />
