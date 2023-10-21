@@ -41,10 +41,10 @@ npm run start
 
 👤 **Fabrizio Nucci**
 
-- Website: [fabrinucci.github.io](https://fabrinucci.github.io)
-- Github: [@fabrinucci](https://github.com/fabrinucci)
-- LinkedIn: [@fabrinucci](https://linkedin.com/in/fabrinucci)
-- Twitter: [@FabrizioDev](https://twitter.com/FabrizioDev)
+[![Website](https://img.shields.io/static/v1?label=&message=website&color=CCCCF1&style=for-the-badge)](https://fabrinucci.github.io)
+[![GitHub](https://img.shields.io/static/v1?label=&message=github&color=181717&logo=github&logoColor=white&style=for-the-badge)](https://github.com/fabrinucci)
+[![LinkedIn](https://img.shields.io/static/v1?label=&message=linkedin&color=0A66C2&logo=linkedin&logoColor=white&style=for-the-badge)](https://linkedin.com/in/fabrinucci)
+[![Twitter](https://img.shields.io/static/v1?label=&message=twitter&color=1D9BF0&logo=x&logoColor=white&style=for-the-badge)](https://twitter.com/FabrizioDev)
 
 ## Show your support
 
