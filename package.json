@@ -1,7 +1,14 @@
 {
   "name": "app-citas",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "private": true,
+  "author": "Fabrizio Nucci",
+  "homepage": "https://github.com/fabrinucci/app-citas-mascotas-react",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabrinucci/app-citas-mascotas-react.git"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
