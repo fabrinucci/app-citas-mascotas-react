@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import App from '../react/App';
+import { HomePage } from '../components/HomePage';
 import './index.css';
----
 
-  <Layout title='Administrador de Pacientes'>
-    <App client:load />
-  </Layout>
-</html>
+---
+<Layout title='Administrador de Pacientes'>
+  <HomePage client:load />
+</Layout>
