@@ -1,49 +1,56 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { type ChangeEvent, type FormEvent, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import { type IAppointment, type IFullAppointment } from '../types';
+import { initialValue } from '../utils/index';
 
-const Form = ({ createAppointment }) => {
-  const initialValue = {
-    pet: '',
-    owner: '',
-    date: '',
-    time: '',
-    symptoms: '',
-  };
+interface Props {
+  createAppointment: (appointment: IFullAppointment) => void;
+}
 
-  const [appointment, updateAppointment] = useState(initialValue);
+export const Form = ({ createAppointment }: Props) => {
+  const [appointment, updateAppointment] = useState<IAppointment>(initialValue);
+  const [error, updateError] = useState<boolean>(false);
 
-  const [error, updateError] = useState(false);
+  const { pet, owner, date, time, symptoms } = appointment;
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     updateAppointment({
       ...appointment,
       [e.target.name]: e.target.value,
     });
   };
 
-  const { pet, owner, date, time, symptoms } = appointment;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (
+  const validateEntry = () => {
+    return (
       pet.trim() === '' ||
       owner.trim() === '' ||
       date.trim() === '' ||
       time.trim() === '' ||
       symptoms.trim() === ''
-    ) {
-      updateError(true);
-      return;
-    }
+    );
+  };
+
+  const addAppointment = () => {
+    const newAppointment: IFullAppointment = {
+      ...appointment,
+      id: uuid(),
+    };
+
+    createAppointment(newAppointment);
+  };
+
+  const resetValues = () => {
+    updateAppointment(initialValue);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (validateEntry()) return updateError(true);
 
     updateError(false);
-
-    appointment.id = uuid();
-    createAppointment(appointment);
-
-    updateAppointment(initialValue);
+    addAppointment();
+    resetValues();
   };
 
   return (
@@ -99,16 +106,8 @@ const Form = ({ createAppointment }) => {
           value={symptoms}
         ></textarea>
 
-        <button className='u-full-width button-primary' type='submit'>
-          Agregar Cita
-        </button>
+        <button className='u-full-width button-primary'>Agregar Cita</button>
       </form>
     </>
   );
 };
-
-Form.propTypes = {
-  createAppointment: PropTypes.func.isRequired,
-};
-
-export default Form;

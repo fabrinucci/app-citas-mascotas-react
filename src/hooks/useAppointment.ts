@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { type IFullAppointment } from '../types';
 
 export const useAppointment = () => {
-  let initValue = JSON.parse(localStorage.getItem('appointments'));
+  let initValue: IFullAppointment[] | [] = JSON.parse(localStorage.getItem('appointments')!);
+
   if (!initValue) {
     initValue = [];
   }
 
-  const [appointments, saveAppointments] = useState(initValue);
+  const [appointments, saveAppointments] = useState<IFullAppointment[]>(initValue!);
 
-  const createAppointment = (appointment) => {
+  const createAppointment = (appointment: IFullAppointment) => {
     saveAppointments([...appointments, appointment]);
   };
 

@@ -1,7 +1,12 @@
-import PropTypes from 'prop-types';
+import { type IFullAppointment } from '../types';
 
-export const Appointment = ({ appointment, handleDelete }) => {
-  const { pet, owner, date, time, symptoms } = appointment;
+interface Props {
+  appointment: IFullAppointment;
+  handleDelete: (id: string) => void;
+}
+
+export const Appointment = ({ appointment, handleDelete }: Props) => {
+  const { id, pet, owner, date, time, symptoms } = appointment;
 
   return (
     <div className='cita'>
@@ -21,14 +26,9 @@ export const Appointment = ({ appointment, handleDelete }) => {
         Síntomas: <span>{symptoms}</span>
       </p>
 
-      <button className='button eliminar u-full-width' onClick={() => handleDelete(appointment.id)}>
+      <button className='button eliminar u-full-width' onClick={() => handleDelete(id)}>
         Eliminar &times;
       </button>
     </div>
   );
-};
-
-Appointment.propTypes = {
-  appointment: PropTypes.object.isRequired,
-  handleDelete: PropTypes.func.isRequired,
 };

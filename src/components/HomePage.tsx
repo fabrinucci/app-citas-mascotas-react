@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { useAppointment } from '../hooks/useAppointment';
 import { Appointment } from './Appointment';
-import Form from './Form';
+import { Form } from './Form';
+import { type IFullAppointment } from '../types';
 
 export const HomePage = () => {
   const { appointments, saveAppointments, createAppointment } = useAppointment();
 
   useEffect(() => {
-    let initValue = JSON.parse(localStorage.getItem('appointments'));
+    let initValue: IFullAppointment = JSON.parse(localStorage.getItem('appointments')!);
 
     if (initValue) {
       localStorage.setItem('appointments', JSON.stringify(appointments));
@@ -16,7 +17,7 @@ export const HomePage = () => {
     }
   }, [appointments]);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: string) => {
     const newAppointment = appointments.filter((appointment) => appointment.id !== id);
     saveAppointments(newAppointment);
   };
