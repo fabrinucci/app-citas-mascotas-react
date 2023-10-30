@@ -1,24 +1,16 @@
-import { type ChangeEvent, type FormEvent, useState } from 'react';
-import { v4 as uuid } from 'uuid';
-import { type IAppointment, type IFullAppointment } from '../types';
-import { initialValue } from '../utils/index';
+import { type ChangeEvent, type FormEvent } from 'react';
+import { type IFullAppointment } from '../types';
+import { useForm } from '../hooks/useForm';
 
 interface Props {
   createAppointment: (appointment: IFullAppointment) => void;
 }
 
 export const Form = ({ createAppointment }: Props) => {
-  const [appointment, updateAppointment] = useState<IAppointment>(initialValue);
-  const [error, updateError] = useState<boolean>(false);
+  const { appointment, error, addAppointment, updateAppointment, resetValues, updateError } =
+    useForm({ createAppointment });
 
   const { pet, owner, date, time, symptoms } = appointment;
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    updateAppointment({
-      ...appointment,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const validateEntry = () => {
     return (
@@ -30,17 +22,11 @@ export const Form = ({ createAppointment }: Props) => {
     );
   };
 
-  const addAppointment = () => {
-    const newAppointment: IFullAppointment = {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    updateAppointment({
       ...appointment,
-      id: uuid(),
-    };
-
-    createAppointment(newAppointment);
-  };
-
-  const resetValues = () => {
-    updateAppointment(initialValue);
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
