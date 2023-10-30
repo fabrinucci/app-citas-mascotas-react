@@ -10,7 +10,7 @@ export const useAppointment = () => {
     saveAppointments([...appointments, appointment]);
   };
 
-  const handleDelete = (id: string) => {
+  const deleteAppointment = (id: string) => {
     const newAppointment = appointments.filter((appointment) => appointment.id !== id);
     saveAppointments(newAppointment);
   };
@@ -21,8 +21,7 @@ export const useAppointment = () => {
 
   return {
     appointments,
-    saveAppointments,
     createAppointment,
-    handleDelete,
+    deleteAppointment,
   };
 };

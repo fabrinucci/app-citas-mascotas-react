@@ -1,15 +1,9 @@
-import { useEffect } from 'react';
 import { useAppointment } from '../hooks/useAppointment';
 import { Appointment } from './Appointment';
 import { Form } from './Form';
 
 export const HomePage = () => {
-  const { appointments, saveAppointments, createAppointment } = useAppointment();
-
-  const handleDelete = (id: string) => {
-    const newAppointment = appointments.filter((appointment) => appointment.id !== id);
-    saveAppointments(newAppointment);
-  };
+  const { appointments, createAppointment, deleteAppointment } = useAppointment();
 
   const title = appointments.length === 0 ? 'No hay Citas agregadas' : 'Admininstra tus citas';
 
@@ -27,7 +21,7 @@ export const HomePage = () => {
               <Appointment
                 key={appointment.id}
                 appointment={appointment}
-                handleDelete={handleDelete}
+                deleteAppointment={deleteAppointment}
               />
             ))}
           </div>

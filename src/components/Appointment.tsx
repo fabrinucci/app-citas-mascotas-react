@@ -2,10 +2,10 @@ import { type IFullAppointment } from '../types';
 
 interface Props {
   appointment: IFullAppointment;
-  handleDelete: (id: string) => void;
+  deleteAppointment: (id: string) => void;
 }
 
-export const Appointment = ({ appointment, handleDelete }: Props) => {
+export const Appointment = ({ appointment, deleteAppointment }: Props) => {
   const { id, pet, owner, date, time, symptoms } = appointment;
 
   return (
@@ -26,7 +26,7 @@ export const Appointment = ({ appointment, handleDelete }: Props) => {
         Síntomas: <span>{symptoms}</span>
       </p>
 
-      <button className='button eliminar u-full-width' onClick={() => handleDelete(id)}>
+      <button className='button eliminar u-full-width' onClick={() => deleteAppointment(id)}>
         Eliminar &times;
       </button>
     </div>
