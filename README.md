@@ -36,6 +36,7 @@ npm run start
 
 [![ReactJS](https://img.shields.io/static/v1?label=&message=reactjs&color=149ECA&logo=react&logoColor=white&style=for-the-badge)](https://react.dev/)
 [![Astro](https://img.shields.io/static/v1?label=&message=astro&color=070707&logo=astro&logoColor=white&style=for-the-badge)](https://astro.build/)
+[![TypeScript](https://img.shields.io/static/v1?label=&message=typescript&color=3178C6&logo=typescript&logoColor=white&style=for-the-badge)](https://www.typescriptlang.org/)
 
 ## Author
 
