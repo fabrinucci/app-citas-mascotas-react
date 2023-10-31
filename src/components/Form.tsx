@@ -1,53 +1,46 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { v4 as uuid } from 'uuid';
+import { type ChangeEvent, type FormEvent } from 'react';
+import { type IFullAppointment } from '../types';
+import { useForm } from '../hooks/useForm';
 
-const Form = ({ createAppointment }) => {
-  const initialValue = {
-    pet: '',
-    owner: '',
-    date: '',
-    time: '',
-    symptoms: '',
+interface Props {
+  createAppointment: (appointment: IFullAppointment) => void;
+}
+
+export const Form = ({ createAppointment }: Props) => {
+  const { appointment, error, addAppointment, updateAppointment, resetValues, updateError } =
+    useForm({ createAppointment });
+
+  const { pet, owner, date, time, symptoms } = appointment;
+
+  const validateEntry = () => {
+    return (
+      pet.trim() === '' ||
+      owner.trim() === '' ||
+      date.trim() === '' ||
+      time.trim() === '' ||
+      symptoms.trim() === ''
+    );
   };
 
-  const [appointment, updateAppointment] = useState(initialValue);
-
-  const [error, updateError] = useState(false);
-
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     updateAppointment({
       ...appointment,
       [e.target.name]: e.target.value,
     });
   };
 
-  const { pet, owner, date, time, symptoms } = appointment;
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (
-      pet.trim() === '' ||
-      owner.trim() === '' ||
-      date.trim() === '' ||
-      time.trim() === '' ||
-      symptoms.trim() === ''
-    ) {
-      updateError(true);
-      return;
-    }
+    if (validateEntry()) return updateError(true);
 
     updateError(false);
-
-    appointment.id = uuid();
-    createAppointment(appointment);
-
-    updateAppointment(initialValue);
+    addAppointment();
+    resetValues();
   };
 
   return (
-    <>
+    <section className='one-half column'>
       <h1>Crear Cita</h1>
 
       {error ? <p className='alerta-error'>Todos los campos son obligatorios</p> : null}
@@ -99,16 +92,8 @@ const Form = ({ createAppointment }) => {
           value={symptoms}
         ></textarea>
 
-        <button className='u-full-width button-primary' type='submit'>
-          Agregar Cita
-        </button>
+        <button className='u-full-width button-primary'>Agregar Cita</button>
       </form>
-    </>
+    </section>
   );
 };
-
-Form.propTypes = {
-  createAppointment: PropTypes.func.isRequired,
-};
-
-export default Form;

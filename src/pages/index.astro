@@ -1,29 +1,9 @@
 ---
-import App from '../react/App';
+import Layout from '../layouts/Layout.astro';
+import { HomePage } from '../components/HomePage';
 import './index.css';
----
 
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <link 
-      rel='stylesheet' 
-      href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css'
-    >
-    <link 
-      href='https://fonts.googleapis.com/css?family=Staatliches' 
-      rel='stylesheet'
-    >
-    <link 
-      rel='stylesheet' 
-      href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css'
-    >
-    <title>Administrador de Pacientes</title>
-  </head>
-  <body>
-    <App client:load />
-  </body>
-</html>
+---
+<Layout title='Administrador de Pacientes'>
+  <HomePage client:only />
+</Layout>
