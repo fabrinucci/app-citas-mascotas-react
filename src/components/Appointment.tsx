@@ -9,7 +9,7 @@ export const Appointment = ({ appointment, deleteAppointment }: Props) => {
   const { id, pet, owner, date, time, symptoms } = appointment;
 
   return (
-    <div className='cita'>
+    <div className='appointment'>
       <p>
         Mascota: <span>{pet}</span>
       </p>

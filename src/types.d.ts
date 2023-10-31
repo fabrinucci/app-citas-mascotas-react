@@ -1,7 +1,7 @@
 export interface IAppointment {
   pet: string;
   owner: string;
-  date: srtring;
+  date: string;
   time: string;
   symptoms: string;
 }

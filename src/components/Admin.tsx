@@ -1,19 +1,26 @@
-import { useAppointment } from '../hooks/useAppointment';
+import { IFullAppointment } from '../types';
 import { Appointment } from './Appointment';
 
-export const Admin = () => {
-  const { appointments, deleteAppointment } = useAppointment();
+interface Props {
+  appointments: IFullAppointment[];
+  deleteAppointment: (id: string) => void;
+}
+
+export const Admin = ({ appointments, deleteAppointment }: Props) => {
+  const title = appointments.length === 0 ? 'No hay Citas agregadas' : 'Admininstra tus citas';
 
   return (
-    <div>
-      <h1>Admininstra tus citas</h1>
-      {appointments.map((appointment) => (
-        <Appointment
-          key={appointment.id}
-          appointment={appointment}
-          deleteAppointment={deleteAppointment}
-        />
-      ))}
-    </div>
+    <section className='one-half column'>
+      <h1>{title}</h1>
+      <div>
+        {appointments.map((appointment) => (
+          <Appointment
+            key={appointment.id}
+            appointment={appointment}
+            deleteAppointment={deleteAppointment}
+          />
+        ))}
+      </div>
+    </section>
   );
 };

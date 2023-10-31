@@ -40,7 +40,7 @@ export const Form = ({ createAppointment }: Props) => {
   };
 
   return (
-    <>
+    <section className='one-half column'>
       <h1>Crear Cita</h1>
 
       {error ? <p className='alerta-error'>Todos los campos son obligatorios</p> : null}
@@ -94,6 +94,6 @@ export const Form = ({ createAppointment }: Props) => {
 
         <button className='u-full-width button-primary'>Agregar Cita</button>
       </form>
-    </>
+    </section>
   );
 };
